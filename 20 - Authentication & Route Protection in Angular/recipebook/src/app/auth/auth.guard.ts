@@ -11,6 +11,8 @@ import { AuthService } from './auth.service';
 import { map, tap, take } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
+
+//The code that runs before router/component is loaded
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
   canActivate(
@@ -27,6 +29,7 @@ export class AuthGuard implements CanActivate {
         }
 
         return this.router.createUrlTree(['/auth']);
+        //newer feature to redirect user to proper page if user is directly hitting the guarded URL
       })
     );
   }
@@ -37,6 +40,7 @@ export class AuthGuard implements CanActivate {
   //   return this.authService.user.pipe(
   //     map(user => {
   //       return !!user;
+            //!! is a trick to turn a truish value to TRUE and nullish value to FALSE
   //     }),
   //     tap(isAuth => {
   //       if (!isAuth) {

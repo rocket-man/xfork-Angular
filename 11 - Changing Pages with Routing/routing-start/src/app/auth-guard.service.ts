@@ -13,10 +13,14 @@ import { AuthService } from './auth.service';
 export class AuthGuard implements CanActivate, CanActivateChild {
   constructor(private authService: AuthService, private router: Router) {}
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean> | Promise<boolean> | boolean {
+
+  //Guards can be used to block specific routes as needed, ex, those that need logins
+  canActivate( // from CanActivate interface
+    route: ActivatedRouteSnapshot, //current router path
+    state: RouterStateSnapshot //current router state
+  ): Observable<boolean> | Promise<boolean> | boolean
+        //can be used with sync and async operations
+    {
     return this.authService.isAuthenticated().then((authenticated: boolean) => {
       if (authenticated) {
         return true;

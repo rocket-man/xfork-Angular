@@ -20,3 +20,20 @@ import { CoreModule } from './core.module';
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+//modules are combining comp, directives, services. pipes etc
+
+
+//We wont import the RecipiesModule and other feature modules,
+//as we would then be trying to load the Module both lazily and eagerly
+
+
+//Services can be provided in 1. root(accessible in app module) -->rootInjector
+
+//2. any other component (accessible in the component tree)
+//--> children override with their own instances, component-specific injector
+
+//Eager loaded modules //service available applicaion-wise      -->root-injector
+
+
+//Lazy loaded modules //Service available in loaded module / gets its own instance(in case it is provided in app module as well?)
+//-->child-injector

@@ -34,5 +34,15 @@ export class DataStorageService {
           this.recipeService.setRecipes(recipes);
         })
       );
+
+      //Here in Course, as alternative, we had 4 pipe operations taking place in the pipe operator
+      //take(1) :: get object from the observable
+      //exhaustMap(user =>{
+      //exhaustmap passes the observable control to the next , i.e. from user(data) to http
+      //  return this.http.get<recipe[]>({'url'});
+      // }),map ... tap
+
+      //check auto-logout code
+      }
   }
 }

@@ -24,7 +24,9 @@ import { SharedModule } from '../shared/shared.module';
     RouterModule,
     ReactiveFormsModule,
     RecipesRoutingModule,
+    //the router module that we exporte from the recipie-routing.ts
     SharedModule
   ]
+  //No exports here because, all the components exported are used internally in this module
 })
 export class RecipesModule {}

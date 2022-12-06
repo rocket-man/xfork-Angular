@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 })
 export class AppComponent implements OnInit, OnDestroy {
   loadedPosts: Post[] = [];
-  isFetching = false;
+  isFetching = false; //loading page while waiting for result
   error = null;
   subscription: Subscription;
 
@@ -34,7 +34,8 @@ export class AppComponent implements OnInit, OnDestroy {
       .createAndStorePost(postData.title, postData.content)
       .subscribe(() => {
         this.fetchPosts();
-      });
+      }); //post must have an subscription with an observable,
+      //else angular thinks no one is interested in response and request is not sent
   }
 
   onFetchPosts() {
@@ -55,6 +56,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private fetchPosts() {
     this.isFetching = true;
+    //We are returning the observable and NOT subscribing in the service itself
+    //because if we do in service, the component will not get updated.
+    //The service subscription will not work and we we have to use component subscription
     this.postsService.fetchPosts().subscribe(
       posts => {
         this.isFetching = false;

@@ -6,14 +6,14 @@
           role="presentation"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: true }"
-        >
-          <a routerLink="/">Home</a>
+        > <!-- CSS to identicate whhich all rotes are active, exact:true make sure the pathmatch is exact-->
+          <a routerLink="/">Home</a> <!-- makes sure that that whole page is not re-loaded and state is not lost-->
         </li>
         <li role="presentation" routerLinkActive="active">
           <a routerLink="/servers">Servers</a>
         </li>
         <li role="presentation" routerLinkActive="active">
-          <a [routerLink]="['/users']">Users</a>
+          <a [routerLink]="['/users']">Users</a> <!-- Property binding takes the strings/array values inside quotes-->
         </li>
       </ul>
     </div>
@@ -24,3 +24,11 @@
     </div>
   </div>
 </div>
+
+
+<!-- routes are always relative when they are like SERVERS, and absolute path like /SERVERS
+In root component they have the localhost:4200 -> here we can use the absolute path
+Relative path ==> add to currently loaded path
+We can also use ../servers to go back the paths and then hit links-->
+
+<!-- router outlet works at component level. Child routes ,ust have their own router-outlets-->

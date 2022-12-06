@@ -22,5 +22,7 @@ export class ServersComponent implements OnInit {
 
   onReload() {
     // this.router.navigate(['servers'], { relativeTo: this.route }); //servers/servers
+    // by default relativeTo points to the root deomain
   }
 }
+// router always keep tracks of which route it is in, and which component it has loaded

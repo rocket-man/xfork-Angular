@@ -10,7 +10,7 @@ export interface CanComponentDeactivate {
 }
 
 export class CanDeactivateGuard
-  implements CanDeactivate<CanComponentDeactivate> {
+  implements CanDeactivate<CanComponentDeactivate> {  //check
   canDeactivate(
     component: CanComponentDeactivate,
     currentRoute: ActivatedRouteSnapshot,

@@ -21,6 +21,8 @@ import { DropdownDirective } from './dropdown.directive';
     DropdownDirective,
     CommonModule
   ]
+
+  //Any place we import the Shared module, we will get access to all the above exports
   // entryComponents: [AlertComponent]
   //Only needed for lower versions than Angular 9
 })

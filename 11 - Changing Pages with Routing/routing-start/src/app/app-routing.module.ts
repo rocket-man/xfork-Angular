@@ -17,12 +17,12 @@ const appRoutes: Routes = [
   {
     path: 'users',
     component: UsersComponent,
-    children: [{ path: ':id/:name', component: UserComponent }]
+    children: [{ path: ':id/:name', component: UserComponent }] //:id is a parameter that loads values dynamically
   },
   {
     path: 'servers',
-    // canActivate: [AuthGuard],
-    canActivateChild: [AuthGuard],
+    // canActivate: [AuthGuard], //the whole route is guarded
+    canActivateChild: [AuthGuard], //child routes are guarded
     component: ServersComponent,
     children: [
       {
@@ -41,14 +41,17 @@ const appRoutes: Routes = [
   {
     path: 'not-found',
     component: ErrorPageComponent,
-    data: { message: 'Page not found!' }
+    data: { message: 'Page not found!' } //message being sent along with router. If page is used in multiple pages, we can set multiple messgaes
   },
   { path: '**', redirectTo: '/not-found' }
   // { path: '', redirectTo: '/somewhere-else', pathMatch: 'full' }
+  // should always be at the end, as paths are parsed top to bottom
 ];
 
 @NgModule({
-  // imports: [RouterModule.forRoot(appRoutes, { useHash: true })], // for old browsers support which not support the other way
+  // imports: [RouterModule.forRoot(appRoutes, { useHash: true })],
+  // for old browsers support which not support the other way, usehash will append an # to the <url:port>,
+  // Web server will maintain the url part, Angular will maintain the right part after #
   imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule]
 })

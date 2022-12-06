@@ -27,7 +27,15 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules })
+    //preload as soon as possible, possibly in idle time when user is browsing page
   ],
   exports: [RouterModule]
-})
+  })
+  //.forRoot declares the route for the root component,
+  //.forChild declared the route for the child component
+  //We must export this module, as all modules work individually,
+  //and without exporting modules will not be able to talk to each other
+
+  //The components declared in this module, will not be available to other module.
+  //The routes we provide here, the modules we imported in app module, all break
 export class AppRoutingModule {}

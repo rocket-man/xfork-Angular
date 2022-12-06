@@ -12,11 +12,13 @@ interface Server {
   name: string;
   status: string;
 }
-
+//resolver is used to execute some code before router is loaded,
+//NOT any logic if router/component is loaded or not, but it will always be executed
 @Injectable()
 export class ServerResolver implements Resolve<Server> {
   constructor(private serversService: ServersService) {}
 
+  //load data in advance
   resolve(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot

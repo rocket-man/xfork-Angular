@@ -2,3 +2,5 @@
 <p>User name is {{ user.name }}</p>
 <hr />
 <a [routerLink]="['/users', 10, 'Juan']">Load Juan (10)</a>
+<!-- We are already ON this component, so Angular by default, will not load them again
+For this purpose, we use the params obsevables-->

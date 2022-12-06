@@ -1,6 +1,12 @@
 <div class="row">
   <div class="col-xs-12 col-sm-4">
     <div class="list-group">
+      <!--
+        queryparams are the query parameters
+        fragment : jump to specific part of the code
+        The [routerLink] array takes URLs parts it will take in side-by-side
+        Only server 3 is editable
+      -->
       <a
         [routerLink]="['/servers', server.id]"
         [queryParams]="{ allowEdit: server.id === 3 ? '1' : '0' }"

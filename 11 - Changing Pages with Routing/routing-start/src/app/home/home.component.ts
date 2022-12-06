@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
 
   onLoadServer(id: Number) {
     this.router.navigate(['/servers', id, 'edit'], {
+      //if we want our buttons to navigate to different part of code without manually setting router links
       queryParams: { allowEdit: '1' },
       fragment: 'loading'
     });

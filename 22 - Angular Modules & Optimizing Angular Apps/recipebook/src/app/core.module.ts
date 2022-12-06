@@ -17,3 +17,4 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
   ]
 })
 export class CoreModule {}
+//makes the app-module leaner by core-modules keeps track of the services that we use

@@ -17,6 +17,10 @@ export interface AuthResponseData {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   user = new BehaviorSubject<User>(null);
+  //BehaviorSubject is present so that we can still get the token value
+
+  //Subject will track all upcoming changes to the user
+  //Behavior subject will also track the history of changes
   private tokenExpirationTimer: any;
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -84,7 +88,10 @@ export class AuthService {
       userData._token,
       new Date(userData._tokenExpirationDate)
     );
-
+    //userData.token - we cant do
+    //loadedUserData.token - we can do
+    //==> this is because, for userData, we are just parsing a JSOn and this is not the class object yet
+    //but Loadeduser is, so we can use the getter here
     if (loadedUser.token) {
       this.user.next(loadedUser);
 
@@ -98,6 +105,8 @@ export class AuthService {
 
   logout() {
     this.user.next(null);
+    //Since user is a BehaviorSubject,
+    //we pass the next state of the user as null, so user details are lost
     this.router.navigate(['/auth']);
     localStorage.removeItem('userData');
 
@@ -123,7 +132,8 @@ export class AuthService {
     const user = new User(email, userId, token, expirationDate);
     this.user.next(user);
     this.autoLogout(expiresIn * 1000);
-
+    //local storage is the computer file-system storage, controlled by the browser
+    //generally used to store the cookies
     localStorage.setItem('userData', JSON.stringify(user));
   }
 

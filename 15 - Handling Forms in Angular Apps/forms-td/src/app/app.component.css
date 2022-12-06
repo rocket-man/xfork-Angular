@@ -2,6 +2,8 @@
   margin-top: 30px;
 }
 
+else whole form will be red, as whole form is also ng-invalid, touched so that error is not there from beginning
 input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
+

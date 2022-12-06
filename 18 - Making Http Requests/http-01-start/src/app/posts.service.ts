@@ -17,11 +17,11 @@ export class PostsService {
 
   createAndStorePost(title: string, content: string) {
     const postData: Post = { title, content };
-    return this.http.post<{ name: string }>(
+    return this.http.post<{ name: string }>(//reponse data type
       'https://ng-complete-guide-7b38d.firebaseio.com/posts.json',
       postData,
       {
-        observe: 'response'
+        observe: 'response'  //getting the whole response object
       }
     );
   }
@@ -38,28 +38,33 @@ export class PostsService {
   //         console.log(responseData);
   //       },
   //       error => {
-  //         this.error.next(error.message);
+  //         this.error.next(error.message); //Since we are using the SUBJECT
+
+  //        //SUBJECT is exposing the .next (like in observable internally)
   //       }
   //     );
   // }
 
   fetchPosts() {
-    let searchParams = new HttpParams();
+    let searchParams = new HttpParams(); //immutable
     searchParams = searchParams.append('print', 'pretty');
     searchParams = searchParams.append('custom', 'key');
     //append method returns a new body with the appended value
 
     return this.http
+    //get is a generic type and Post is returned here
       .get<{ [key: string]: Post }>(
         'https://ng-complete-guide-7b38d.firebaseio.com/posts.json',
         {
+          //http headers
           headers: new HttpHeaders({
             'Custom-Header': 'Hello'
           }),
+          //query parameters
           params: searchParams,
           responseType: 'json'
         }
-      )
+      )//Now to store each object into an array, we are manually indexing through
       .pipe(
         map(responseData => {
           const postsArray: Post[] = [];
@@ -67,11 +72,13 @@ export class PostsService {
           for (const key in responseData) {
             if (responseData.hasOwnProperty(key)) {
               postsArray.push({ ...responseData[key], id: key });
+              //... speard param :: CHECK
             }
           }
 
           return postsArray;
         }),
+        //error handling task that we may implement
         catchError(errorResponse => {
           // Send to analytics server
           return throwError(errorResponse);
@@ -82,7 +89,8 @@ export class PostsService {
   deletePosts() {
     return this.http
       .delete('https://ng-complete-guide-7b38d.firebaseio.com/posts.json', {
-        observe: 'events',
+        observe: 'events',//
+        //'body' extracts the response body and converts to JSON
         responseType: 'text'
       })
       .pipe(

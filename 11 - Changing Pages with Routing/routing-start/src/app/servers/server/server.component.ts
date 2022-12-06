@@ -19,8 +19,12 @@ export class ServerComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe((data: Data) => {
-      this.server = data['server'];
+      this.server = data['server']; //'server' must match with resolve flag in the router
     });
+
+    //1. UP data -- gets server ID from backend or the array ID, works because we resolve it with server-resolver
+    //2. DOWN part -- gets server ID from the URL
+
     // const id = +this.route.snapshot.params['id'];
     // // this.server = this.serversService.getServer(id);
     // this.route.params.subscribe((params: Params) => {

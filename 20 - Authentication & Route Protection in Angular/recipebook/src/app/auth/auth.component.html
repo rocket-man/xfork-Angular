@@ -42,7 +42,8 @@
         |
         <button type="button" class="btn btn-primary" (click)="onSwitchMode()">
           Switch to {{ isLoginMode ? 'Sign Up' : 'Login' }}
-        </button>
+        </button><!-- this button type is "button" so that the Form does not accidently submit the form,
+          and send an HHTP request-->
       </div>
     </form>
   </div>

@@ -14,3 +14,8 @@ export class User {
     return this._token;
   }
 }
+//get and set will act as properties
+//So when we do => user.token //getter gets called
+//user.token=abcd //setter gets called
+
+//in contructor when we declare the params, they automatically become properties of class

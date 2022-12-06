@@ -19,7 +19,8 @@ export class AuthInterceptorService implements HttpInterceptor {
         if (!user) {
           return next.handle(req);
         }
-
+        //since user was a behaviorSubject,
+        //if we dont use the above if(), user will be null and logins will fail
         const modifiedReq = req.clone({
           params: new HttpParams().set('auth', user.token)
         });

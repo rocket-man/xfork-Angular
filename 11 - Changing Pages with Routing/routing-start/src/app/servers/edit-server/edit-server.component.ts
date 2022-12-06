@@ -14,7 +14,7 @@ export class EditServerComponent implements OnInit, CanComponentDeactivate {
   serverName: string = '';
   serverStatus: string = '';
   allowEdit: boolean = false;
-  changesSaved: boolean = false;
+  changesSaved: boolean = false; //Ensure that user does not accidently go out of page without saving the details
 
   constructor(
     private serversService: ServersService,
